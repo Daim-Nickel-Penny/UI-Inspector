@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "UI designer's assistant tool",
   "manifest_version": 2,
-  "permission": ["activetab"],
+  "permissions": ["activeTab"],
   "background": {
     "persistent": false,
     "scripts": ["background.js"]
