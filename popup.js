@@ -9,27 +9,7 @@ const toggleUImode = () => {
   });
 };
 
-// const broadcast = (message) => {
-//   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-//     chrome.tabs.sendMessage[
-//       (tabs[0].id,
-//       message,
-//       (response) => {
-//         if (!response) return;
-
-//         switch (response.type) {
-//           case "toggle-UIMode":
-//             document.getElementById("toggle-design-mode-btn").innerHTML =
-//               response.payload === "on" ? "Disable" : "Enable";
-//             break;
-//           default:
-//           //no operations
-//         }
-//       })
-//     ];
-//   });
-// };
-
+let state;
 const broadcast = (message) => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
@@ -42,6 +22,12 @@ const broadcast = (message) => {
             response.payload === "on" ? "Disable" : "Enable";
           break;
 
+        case "get-state":
+          state = response.payload;
+          document.getElementById("toggle-design-mode-btn").innerHTML =
+            state.designMode === "on" ? "Disable" : "Enable";
+          break;
+
         default:
           break;
       }
@@ -49,7 +35,17 @@ const broadcast = (message) => {
   });
 };
 
+const init = () => {
+  broadcast({
+    type: "get-state",
+  });
+};
+
 //capture element
 //button in this case
 //document.getElementById("toggle-design-mode-btn").onclick = toggleUImode;
 document.getElementById("toggle-design-mode-btn").onclick = toggleUImode;
+
+window.onload = () => {
+  init();
+};

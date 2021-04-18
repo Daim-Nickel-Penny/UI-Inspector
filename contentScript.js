@@ -1,13 +1,28 @@
 const toggleUImode = () => {
   document.designMode = document.designMode === "off" ? "on" : "off";
-
+  saveState({
+    designMode: document.designMode,
+  });
   return {
     type: "toggle-UIMode",
     payload: document.designMode,
   };
 };
+
+const getState = () => {
+  const state = sessionStorage.getItem("state");
+  return {
+    type: "get-state",
+    payload: state ? JSON.parse(state) : { designMode: document.designMode },
+  };
+};
+
+const saveState = (payload) => {
+  sessionStorage.setItem("state", JSON.stringify(payload));
+};
 const actions = {
   "toggle-UIMode": toggleUImode,
+  "get-state": getState,
 };
 
 chrome.runtime.onMessage.addListener((request, sender, response) => {
