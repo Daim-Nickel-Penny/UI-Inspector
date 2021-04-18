@@ -1,15 +1,12 @@
-const toggleUImode = () => {
-  //toggle UI mode
-  //needs acces to DOM
-  // document.designMode = "on"; //off
-  //chrome extension has an API called chrome avalable
+let state;
 
-  broadcast({
-    type: "toggle-UIMode",
-  });
+const toggleDesignMode = () => {
+  broadcast({ type: "toggle-designmode" });
+};
+const takeScreenshot = () => {
+  broadcast({ type: "capture" });
 };
 
-let state;
 const broadcast = (message) => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
@@ -17,17 +14,16 @@ const broadcast = (message) => {
       if (!response) return;
 
       switch (response.type) {
-        case "toggle-UIMode":
+        case "toggle-designmode":
           document.getElementById("toggle-design-mode-btn").innerHTML =
             response.payload === "on" ? "Disable" : "Enable";
           break;
-
         case "get-state":
           state = response.payload;
+
           document.getElementById("toggle-design-mode-btn").innerHTML =
             state.designMode === "on" ? "Disable" : "Enable";
           break;
-
         default:
           break;
       }
@@ -36,15 +32,11 @@ const broadcast = (message) => {
 };
 
 const init = () => {
-  broadcast({
-    type: "get-state",
-  });
+  broadcast({ type: "get-state" });
 };
 
-//capture element
-//button in this case
-//document.getElementById("toggle-design-mode-btn").onclick = toggleUImode;
-document.getElementById("toggle-design-mode-btn").onclick = toggleUImode;
+document.getElementById("toggle-design-mode-btn").onclick = toggleDesignMode;
+document.getElementById("take-screenshot-btn").onclick = takeScreenshot;
 
 window.onload = () => {
   init();
