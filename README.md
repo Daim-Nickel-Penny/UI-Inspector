@@ -25,6 +25,6 @@ You can simply Toggle the UI-Mode and then once you are done editing, can captur
 
 ## **Changing The Text Content & Taking The screenshot**
 
-<img src="change.PNG" alt="Changing The Text" width="260px" height="200px">
+<img src="change.PNG" alt="Changing The Text" width="360px" height="400px">
 
 **Make sure to let me know what new features do you want in here.** 😊
