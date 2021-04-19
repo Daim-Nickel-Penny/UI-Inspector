@@ -17,14 +17,14 @@ You can simply Toggle the UI-Mode and then once you are done editing, can captur
 
 ## **First The Extension Popup**
 
-<img src="extension.png" alt="Extension Popup" width="260px" height="200px">
+<img src="extension.PNG" alt="Extension Popup" width="260px" height="200px">
 
 ## _Enabling the extension_
 
-<img src="enabled-mode.png" alt="Enabled Mode" width="260px" height="200px">
+<img src="enabled-mode.PNG" alt="Enabled Mode" width="260px" height="200px">
 
 ## **Changing The Text Content & Taking The screenshot**
 
-<img src="change.png" alt="Changing The Text" width="260px" height="200px">
+<img src="change.PNG" alt="Changing The Text" width="260px" height="200px">
 
 **Make sure to let me know what new features do you want in here.** 😊
